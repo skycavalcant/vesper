@@ -1,31 +1,37 @@
 # Rigel
-**Autonomous failure detection and recovery. Automatically.**
+**Detecção e recuperação autônoma de falhas. Automaticamente.**
 
-Rigel is an autonomous resilience platform for AWS infrastructure. It detects failures, diagnoses root causes, executes recovery actions, and reports what happened — without human intervention.
+*Autonomous failure detection and recovery. Automatically.*
 
-> Not monitoring. Not backup. An immune system for your cloud.
+O Rigel é uma plataforma autônoma de resiliência para infraestrutura AWS. Ele detecta falhas, diagnostica causa raiz, executa ações de recuperação e reporta o que aconteceu — sem intervenção humana.
 
----
+*Rigel is an autonomous resilience platform for AWS infrastructure. It detects failures, diagnoses root causes, executes recovery actions, and reports what happened — without human intervention.*
 
-## The Problem
-
-```
-Today:                          With Rigel:
-
-Application running             Failure detected
-       |                               |
-     Failure                    Diagnosis
-       |                               |
-Someone wakes up at 3am         Decision (with confidence score)
-       |                               |
-  Investigates                  Automatic recovery
-       |                               |
-    Fixes                       Incident report
-```
+> Não é monitoramento. Não é backup. É um sistema imunológico para a sua cloud.
+>
+> *Not monitoring. Not backup. An immune system for your cloud.*
 
 ---
 
-## Architecture
+## O Problema
+
+```
+Hoje:                           Com o Rigel:
+
+Aplicação rodando               Falha detectada
+       |                               |
+     Falha                       Diagnóstico
+       |                               |
+Alguém acorda às 3h             Decisão (com confidence score)
+       |                               |
+   Investiga                    Recuperação automática
+       |                               |
+    Corrige                     Relatório do incidente
+```
+
+---
+
+## Arquitetura
 
 ```
                     AWS Account
@@ -35,7 +41,7 @@ Someone wakes up at 3am         Decision (with confidence score)
            ------------------------------
            |                            |
       Rigel Watch                 Rigel Brain
-    (Event Collector)          (Decision Engine)
+   (Coletor de Eventos)      (Motor de Decisão)
            |                            |
            ------------------------------
                          |
@@ -54,81 +60,107 @@ Someone wakes up at 3am         Decision (with confidence score)
 
 ---
 
-## Modules
+## Módulos
 
-| Module           | Status      | Description                                   |
-|--------|---------|-------------|
-| **Rigel Watch**  | In progress | Collects events from CloudWatch + EventBridge |
-| **Rigel Brain**  | Planned     | Diagnoses root cause using AWS Bedrock        |
-| **Rigel Repair** | Planned     | Executes recovery actions autonomously        |
-| **Rigel Report** | Planned     | Generates incident reports and dashboard      |
-
----
-
-## Scenarios Handled
-
-- **EC2 failure** → removes from Load Balancer, launches new instance, restores config
-- **RDS unavailable** → activates replica, updates endpoint, alerts team
-- **Region degraded** → Route53 failover to secondary region
-- **Cost anomaly** → detects abnormal resource creation, blocks scaling
+| Módulo | Status | Descrição |
+|---|---|---|
+| **Rigel Watch** | Em andamento | Coleta eventos do CloudWatch + EventBridge<br>*Collects events from CloudWatch + EventBridge* |
+| **Rigel Brain** | Planejado | Diagnostica causa raiz usando AWS Bedrock<br>*Diagnoses root cause using AWS Bedrock* |
+| **Rigel Repair** | Planejado | Executa ações de recuperação de forma autônoma<br>*Executes recovery actions autonomously* |
+| **Rigel Report** | Planejado | Gera relatórios de incidente e dashboard<br>*Generates incident reports and dashboard* |
 
 ---
 
-## Tech Stack
+## Cenários Cobertos
 
-| Layer                  | Technology           |
-|------------------------|----------------------|
-| Infrastructure as Code | Terraform            |
-| Lambda runtime         | Python 3.12          |
-| Event bus              | EventBridge          |
-| Orchestration          | Step Functions       |
-| Storage                | DynamoDB             |
-| Observability          | CloudWatch           |
-| AI/Diagnosis           | AWS Bedrock (Claude) |
-| DNS Failover           | Route53              |
+- **Falha de EC2** → remove do Load Balancer, sobe uma nova instância, restaura a configuração
+- **RDS indisponível** → ativa a réplica, atualiza o endpoint, alerta o time
+- **Região degradada** → failover via Route53 para a região secundária
+- **Anomalia de custo** → detecta criação anormal de recursos, bloqueia o scaling
+
+- *EC2 failure → removes from Load Balancer, launches new instance, restores config*
+- *RDS unavailable → activates replica, updates endpoint, alerts team*
+- *Region degraded → Route53 failover to secondary region*
+- *Cost anomaly → detects abnormal resource creation, blocks scaling*
 
 ---
 
-## Repository Structure
+## Stack Técnica
+
+| Camada | Tecnologia |
+|---|---|
+| Infrastructure as Code | Terraform |
+| Runtime das Lambdas | Python 3.12 |
+| Barramento de eventos | EventBridge |
+| Orquestração | Step Functions |
+| Armazenamento | DynamoDB |
+| Observabilidade | CloudWatch |
+| IA/Diagnóstico | AWS Bedrock (Claude) |
+| Failover de DNS | Route53 |
+
+---
+
+## Estrutura do Repositório
 
 ```
 rigel/
 ├── modules/
-│   ├── watch/        # Event collection
-│   ├── brain/        # AI diagnosis
-│   ├── repair/       # Recovery actions
-│   └── report/       # Incident reporting
+│   ├── watch/        # Coleta de eventos
+│   ├── brain/        # Diagnóstico por IA
+│   ├── repair/       # Ações de recuperação
+│   └── report/       # Relatório de incidentes
 ├── infra/
-│   ├── modules/      # Reusable Terraform modules
-│   └── environments/ # dev / prod configs
+│   ├── modules/      # Módulos Terraform reutilizáveis
+│   └── environments/ # Configs de dev / prod
 ├── docs/
 │   ├── adr/          # Architecture Decision Records
-│   └── diagrams/     # Architecture diagrams
-├── scripts/          # Local dev and test utilities
-└── tests/            # Integration tests
+│   └── diagrams/     # Diagramas de arquitetura
+├── scripts/          # Utilitários de dev e teste local
+└── tests/            # Testes de integração
 ```
 
 ---
 
 ## Roadmap
 
-- [x] Project definition and architecture
-- [ ] Rigel Watch — event collection pipeline
-- [ ] Rigel Repair v1 — EC2 auto-recovery
-- [ ] Rigel Repair v2 — RDS failover
-- [ ] Rigel Repair v3 — Multi-region failover
-- [ ] Rigel Brain — Bedrock AI diagnosis
-- [ ] Rigel Report — Dashboard and incident reports
+- [x] Definição do projeto e arquitetura
+- [ ] Rigel Watch — pipeline de coleta de eventos
+- [ ] Rigel Repair v1 — auto-recuperação de EC2
+- [ ] Rigel Repair v2 — failover de RDS
+- [ ] Rigel Repair v3 — failover multi-region
+- [ ] Rigel Brain — diagnóstico por IA com Bedrock
+- [ ] Rigel Report — dashboard e relatórios de incidente
+
+- *Project definition and architecture*
+- *Rigel Watch — event collection pipeline*
+- *Rigel Repair v1 — EC2 auto-recovery*
+- *Rigel Repair v2 — RDS failover*
+- *Rigel Repair v3 — multi-region failover*
+- *Rigel Brain — Bedrock AI diagnosis*
+- *Rigel Report — dashboard and incident reports*
 
 ---
 
 ## Architecture Decision Records
 
-All architectural decisions are documented in [`/docs/adr`](/docs/adr).
+Todas as decisões arquiteturais estão documentadas em [`/docs/adr`](/docs/adr).
+
+*All architectural decisions are documented in [`/docs/adr`](/docs/adr).*
 
 ---
 
-## Author
+## Como Contribuir
 
-Built by a Solutions Architect in training.
-AWS Certified Cloud Practitioner | SAA-C03 in progress.
+As convenções de branch, commit e documentação estão em [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+*Branch, commit, and documentation conventions are in [`CONTRIBUTING.md`](CONTRIBUTING.md).*
+
+---
+
+## Autor
+
+Construído por um Solutions Architect em formação.
+AWS Certified Cloud Practitioner | SAA-C03 em andamento.
+
+*Built by a Solutions Architect in training.*
+*AWS Certified Cloud Practitioner | SAA-C03 in progress.*
