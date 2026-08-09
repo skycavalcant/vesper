@@ -4,7 +4,7 @@
 *.tfstate
 *.tfstate.backup
 *.tfvars
-!example.tfvars
+!*.tfvars.example
 terraform.tfplan
 
 # Python
@@ -12,6 +12,15 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build artifacts
+build/
+dist/
+*.zip
 
 # AWS
 .aws/
@@ -20,6 +29,8 @@ venv/
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # OS
 .DS_Store
@@ -29,3 +40,8 @@ Thumbs.db
 secrets.json
 .env
 *.env
+credentials.json
+
+# Test outputs
+/tmp/
+*.log

@@ -121,23 +121,100 @@ rigel/
 
 ---
 
+## Quick Start
+
+### Prerequisites
+
+- AWS Account with CLI configured
+- Terraform >= 1.0
+- Python 3.12
+- pip
+
+### Deploy Rigel Watch (Development)
+
+```bash
+# 1. Install development dependencies
+pip install -r requirements-dev.txt
+
+# 2. Run tests
+pytest
+
+# 3. Deploy to AWS
+./scripts/deploy-dev.sh
+
+# 4. Test with a sample event
+./scripts/test-event.sh
+```
+
+### Manual Deployment Steps
+
+```bash
+# Build Lambda package
+./scripts/build-lambda.sh
+
+# Deploy infrastructure
+cd infra/environments/dev
+cp terraform.tfvars.example terraform.tfvars
+terraform init
+terraform plan
+terraform apply
+```
+
+---
+
+## Development
+
+### Project Structure
+
+```
+rigel/
+├── modules/watch/         # ✅ IMPLEMENTED
+│   ├── src/              # Lambda functions
+│   └── tests/            # Unit tests
+├── infra/                # ✅ IMPLEMENTED
+│   ├── modules/watch/    # Terraform module
+│   └── environments/dev/ # Dev environment
+└── scripts/              # ✅ IMPLEMENTED
+    ├── build-lambda.sh
+    ├── deploy-dev.sh
+    └── test-event.sh
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=modules --cov-report=html
+
+# Run only unit tests
+pytest -m unit
+
+# Run specific test file
+pytest modules/watch/tests/test_collector.py -v
+```
+
+---
+
 ## Roadmap
 
 - [x] Definição do projeto e arquitetura
-- [ ] Rigel Watch — pipeline de coleta de eventos
+- [x] **Rigel Watch — pipeline de coleta de eventos** ✅ **CONCLUÍDO**
 - [ ] Rigel Repair v1 — auto-recuperação de EC2
 - [ ] Rigel Repair v2 — failover de RDS
 - [ ] Rigel Repair v3 — failover multi-region
 - [ ] Rigel Brain — diagnóstico por IA com Bedrock
 - [ ] Rigel Report — dashboard e relatórios de incidente
 
-- *Project definition and architecture*
-- *Rigel Watch — event collection pipeline*
-- *Rigel Repair v1 — EC2 auto-recovery*
-- *Rigel Repair v2 — RDS failover*
-- *Rigel Repair v3 — multi-region failover*
-- *Rigel Brain — Bedrock AI diagnosis*
-- *Rigel Report — dashboard and incident reports*
+- *[x] Project definition and architecture*
+- *[x] Rigel Watch — event collection pipeline ✅ COMPLETED*
+- *[ ] Rigel Repair v1 — EC2 auto-recovery*
+- *[ ] Rigel Repair v2 — RDS failover*
+- *[ ] Rigel Repair v3 — multi-region failover*
+- *[ ] Rigel Brain — Bedrock AI diagnosis*
+- *[ ] Rigel Report — dashboard and incident reports*
 
 ---
 
