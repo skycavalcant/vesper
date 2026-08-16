@@ -1,14 +1,14 @@
-# Rigel Watch - Guia de Implementação Completo
+# Vesper Watch - Guia de Implementação Completo
 
 **Autora:** Kaysa Cavalcante  
 **Data:** 2026-08-09  
-**Fase:** Rigel Watch (MVP Completo)
+**Fase:** Vesper Watch (MVP Completo)
 
 ---
 
 ## Visão Geral
 
-Implementamos a **Fase 1 do Rigel**: um sistema completo de coleta de eventos de falhas de EC2 usando **Lambda + EventBridge + DynamoDB**.
+Implementamos a **Fase 1 do Vesper**: um sistema completo de coleta de eventos de falhas de EC2 usando **Lambda + EventBridge + DynamoDB**.
 
 **Fluxo:**
 ```
@@ -20,7 +20,7 @@ EC2 falha → EventBridge detecta → Lambda processa → DynamoDB armazena
 ## Estrutura Criada (25 arquivos)
 
 ```
-rigel/
+vesper/
 ├── 📄 README.md                          # Documentação principal
 ├── 📄 CONTRIBUTING.md                    # Guia para colaboradores
 ├── 📄 SECURITY.md                        # Política de segurança
@@ -35,7 +35,7 @@ rigel/
 │   │   └── ADR-003-step-functions.md
 │   └── IMPLEMENTATION_GUIDE.md           # Este arquivo
 │
-├── 📁 modules/watch/                     # Módulo Rigel Watch
+├── 📁 modules/watch/                     # Módulo Vesper Watch
 │   ├── README.md                         # Documentação do módulo
 │   ├── src/
 │   │   ├── collector.py                  # Lambda handler
@@ -77,7 +77,7 @@ rigel/
 **Conteúdo adicionado:**
 - Seção "Quick Start" com comandos práticos
 - Seção "Development" mostrando estrutura implementada
-- Roadmap marcando Rigel Watch como ✅ COMPLETED
+- Roadmap marcando Vesper Watch como ✅ COMPLETED
 - Instruções de deploy e testes
 
 **Melhoria possível:** Adicionar badges do GitHub (build status, coverage)
@@ -128,7 +128,7 @@ rigel/
 - Previne vulnerabilidades comuns em AWS
 
 **Melhoria possível:**
-- Adicionar threat model específico do Rigel
+- Adicionar threat model específico do Vesper
 - Runbook de resposta a incidentes
 
 ---
@@ -194,7 +194,7 @@ rigel/
 
 #### `collector.py` (novo) - ⭐ CORE
 **O que é:** Lambda function que processa eventos  
-**Por quê:** Coração do Rigel Watch  
+**Por quê:** Coração do Vesper Watch  
 
 **Anatomia do código:**
 
@@ -226,7 +226,7 @@ def lambda_handler(event: Dict[str, Any], context: Any):
         'source': event_source,
         'event_type': event_type,
         'detail': json.dumps(event_detail),  # JSON string
-        'processed': False,  # Para Rigel Brain processar depois
+        'processed': False,  # Para Vesper Brain processar depois
         'created_at': datetime.utcnow().isoformat()
     }
     
@@ -248,7 +248,7 @@ def lambda_handler(event: Dict[str, Any], context: Any):
    - Formato: `source-timestamp-instance`
 
 3. **Por que `processed: False`?**
-   - Futuro: Rigel Brain vai buscar eventos não processados
+   - Futuro: Vesper Brain vai buscar eventos não processados
    - Global Secondary Index (GSI) permite query eficiente
 
 4. **Por que JSON.dumps(detail)?**
@@ -355,7 +355,7 @@ def test_lambda_handler_stores_correct_data(...):
 ---
 
 #### `README.md` (módulo)
-**O que é:** Documentação específica do Rigel Watch  
+**O que é:** Documentação específica do Vesper Watch  
 **Por quê:** Módulo pode ser usado isoladamente  
 **Conteúdo:**
 - Visão geral da arquitetura
@@ -411,7 +411,7 @@ resource "aws_dynamodb_table" "events" {
   - Escolhemos: PAY_PER_REQUEST para dev (sem surpresas de custo)
 
 - **GSI (Global Secondary Index)**:
-  - Por quê: Rigel Brain vai buscar `WHERE processed = false`
+  - Por quê: Vesper Brain vai buscar `WHERE processed = false`
   - Sem GSI: teria que fazer SCAN (lento e caro)
   - Com GSI: QUERY eficiente
 
@@ -675,7 +675,7 @@ output "lambda_function_name" {
 provider "aws" {
   region = "us-east-1"
   default_tags {
-    Project     = "Rigel"
+    Project     = "Vesper"
     Environment = "dev"
   }
 }
@@ -982,12 +982,12 @@ pytest -v
 
 ### Próximas Features
 
-1. **Rigel Repair** (Fase 2)
+1. **Vesper Repair** (Fase 2)
    - Step Functions workflow
    - Lambda para restart EC2
    - SNS notifications
 
-2. **Rigel Brain** (Fase 3)
+2. **Vesper Brain** (Fase 3)
    - Bedrock integration
    - Prompt engineering
    - Confidence scoring

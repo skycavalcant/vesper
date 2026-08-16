@@ -7,14 +7,14 @@
 
 ## Contexto
 
-O Rigel precisa de uma ferramenta de Infrastructure as Code para provisionar e gerenciar todos os recursos AWS de forma consistente entre os ambientes (dev, prod).
+O Vesper precisa de uma ferramenta de Infrastructure as Code para provisionar e gerenciar todos os recursos AWS de forma consistente entre os ambientes (dev, prod).
 
 As principais opções consideradas foram:
 - AWS CloudFormation
 - AWS CDK
 - Terraform
 
-*Rigel needs an Infrastructure as Code tool to provision and manage all AWS resources consistently across environments (dev, prod).*
+*Vesper needs an Infrastructure as Code tool to provision and manage all AWS resources consistently across environments (dev, prod).*
 
 *The main options considered were: AWS CloudFormation, AWS CDK, Terraform.*
 
@@ -30,7 +30,7 @@ Escolhi o **Terraform**.
 
 ## Motivos
 
-1. **Agnóstico de provider** — O Rigel é AWS-first hoje, mas sua arquitetura não deve estar presa a um único provedor cloud. O Terraform suporta AWS, GCP, Azure e outros com a mesma linguagem e workflow, preservando a opção de expandir sem reescrever o código de infraestrutura.
+1. **Agnóstico de provider** — O Vesper é AWS-first hoje, mas sua arquitetura não deve estar presa a um único provedor cloud. O Terraform suporta AWS, GCP, Azure e outros com a mesma linguagem e workflow, preservando a opção de expandir sem reescrever o código de infraestrutura.
 
 2. **Gerenciamento de estado explícito** — O Terraform mantém um state file que representa exatamente o que existe em cada ambiente. Isso torna possível detectar drift entre a infraestrutura declarada e o que está realmente rodando — uma capacidade crítica para uma plataforma de resiliência.
 
@@ -40,11 +40,11 @@ Escolhi o **Terraform**.
 
 ---
 
-1. *Provider agnostic — Rigel is AWS-first today, but its architecture should not be locked to a single cloud provider. Terraform supports AWS, GCP, Azure, and others with the same language and workflow, preserving the option to expand without rewriting infrastructure code.*
+1. *Provider agnostic — Vesper is AWS-first today, but its architecture should not be locked to a single cloud provider. Terraform supports AWS, GCP, Azure, and others with the same language and workflow, preserving the option to expand without rewriting infrastructure code.*
 
 2. *Explicit state management — Terraform maintains a state file that represents exactly what exists in each environment. This makes it possible to detect drift between declared infrastructure and what is actually running — a critical capability for a resilience platform.*
 
-3. *Separation of concerns — Unlike AWS CDK, Terraform keeps infrastructure code completely separate from application code. For Rigel, where infrastructure decisions are architectural decisions, this separation makes reasoning, reviewing, and auditing infrastructure changes easier and safer.*
+3. *Separation of concerns — Unlike AWS CDK, Terraform keeps infrastructure code completely separate from application code. For Vesper, where infrastructure decisions are architectural decisions, this separation makes reasoning, reviewing, and auditing infrastructure changes easier and safer.*
 
 4. *Maturity and ecosystem — Terraform has a stable, well-documented AWS provider and a registry of reusable modules. For a project that needs to move fast without sacrificing reliability, this reduces the risk of hitting unsupported edge cases.*
 

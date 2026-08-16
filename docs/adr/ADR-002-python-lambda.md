@@ -7,14 +7,14 @@
 
 ## Contexto
 
-A lógica central do Rigel roda em funções AWS Lambda. Precisávamos escolher uma linguagem de runtime.
+A lógica central do Vesper roda em funções AWS Lambda. Precisávamos escolher uma linguagem de runtime.
 
 As principais opções consideradas foram:
 - Python
 - JavaScript (Node.js)
 - Go
 
-*Rigel's core logic runs in AWS Lambda functions. We needed to choose a runtime language.*
+*Vesper's core logic runs in AWS Lambda functions. We needed to choose a runtime language.*
 
 *The main options considered were: Python, JavaScript (Node.js), Go.*
 
@@ -34,7 +34,7 @@ Escolhi **Python 3.12**.
 
 2. **Maturidade do Boto3** — O AWS SDK para Python (Boto3) é o mais completo, melhor documentado e mais ativamente mantido SDK para AWS. Cada serviço AWS possui um client no Boto3.
 
-3. **Legibilidade** — As funções Lambda do Rigel contêm lógica de decisão complexa. A legibilidade do Python torna essa lógica mais fácil de raciocinar, testar e documentar.
+3. **Legibilidade** — As funções Lambda do Vesper contêm lógica de decisão complexa. A legibilidade do Python torna essa lógica mais fácil de raciocinar, testar e documentar.
 
 4. **Alinhamento estratégico** — Python é a linguagem padrão para automação cloud, scripts DevOps e engenharia de dados. Adotá-la aqui é uma escolha técnica deliberada, alinhada ao perfil de Solutions Architect — não uma questão de conveniência.
 
@@ -44,7 +44,7 @@ Escolhi **Python 3.12**.
 
 2. *Boto3 maturity — The AWS SDK for Python (Boto3) is the most complete, best documented, and most actively maintained SDK for AWS. Every AWS service has a Boto3 client.*
 
-3. *Readability — Rigel's Lambda functions contain complex decision logic. Python's readability makes that logic easier to reason about, test, and document.*
+3. *Readability — Vesper's Lambda functions contain complex decision logic. Python's readability makes that logic easier to reason about, test, and document.*
 
 4. *Strategic alignment — Python is the standard language for cloud automation, DevOps scripting, and data engineering. Adopting it here is a deliberate technical choice aligned with the Solutions Architect skillset, not a matter of convenience.*
 

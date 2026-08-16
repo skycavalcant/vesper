@@ -1,4 +1,4 @@
-# Contribuindo com o Rigel
+# Contribuindo com o Vesper
 
 Este documento define as convenções de contribuição do projeto. Elas valem para
 todo mundo que abre uma branch aqui.

@@ -1,11 +1,11 @@
 /**
- * Input variables for Rigel Watch module
+ * Input variables for Vesper Watch module
  */
 
 variable "project_name" {
   description = "Name of the project"
   type        = string
-  default     = "rigel"
+  default     = "vesper"
 }
 
 variable "environment" {

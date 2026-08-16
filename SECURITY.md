@@ -18,7 +18,7 @@ We will respond within 48 hours.
 
 ## Security Principles
 
-Rigel follows these security principles:
+Vesper follows these security principles:
 
 ### 1. Least Privilege
 
@@ -163,7 +163,7 @@ policy = jsonencode({
 ```hcl
 terraform {
   backend "s3" {
-    bucket         = "rigel-tfstate-encrypted"
+    bucket         = "vesper-tfstate-encrypted"
     key            = "dev/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = true  # ✅ Required
@@ -265,7 +265,7 @@ git-secrets --scan
 
 ## Compliance
 
-Rigel is designed for:
+Vesper is designed for:
 - ✅ AWS Well-Architected Framework (Security Pillar)
 - ✅ Principle of Least Privilege (PoLP)
 - ✅ Defense in Depth

@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "project_name" {
   description = "Name of the project"
   type        = string
-  default     = "rigel"
+  default     = "vesper"
 }
 
 variable "lambda_zip_path" {

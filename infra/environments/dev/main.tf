@@ -1,5 +1,5 @@
 /**
- * Rigel Watch - Development Environment
+ * Vesper Watch - Development Environment
  */
 
 terraform {
@@ -17,7 +17,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project     = "Rigel"
+      Project     = "Vesper"
       Environment = "dev"
       ManagedBy   = "Terraform"
     }

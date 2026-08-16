@@ -1,6 +1,6 @@
-# Rigel Watch - Development Environment Configuration
+# Vesper Watch - Development Environment Configuration
 # Copy this file to terraform.tfvars and adjust values
 
 aws_region      = "us-east-1"
-project_name    = "rigel"
+project_name    = "vesper"
 lambda_zip_path = "../../../build/watch-lambda.zip"

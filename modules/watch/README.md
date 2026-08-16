@@ -1,20 +1,20 @@
-# Rigel Watch
+# Vesper Watch
 
-Event collection module for Rigel autonomous resilience platform.
+Event collection module for Vesper autonomous resilience platform.
 
 ## Overview
 
-Rigel Watch monitors AWS events and collects failure signals from:
+Vesper Watch monitors AWS events and collects failure signals from:
 - EC2 instance state changes (stopped, terminated)
 - EC2 status check failures
 - AWS Health events
 
-Events are stored in DynamoDB for processing by Rigel Brain (future module).
+Events are stored in DynamoDB for processing by Vesper Brain (future module).
 
 ## Architecture
 
 ```
-EventBridge (EC2 events) → Lambda (collector.py) → DynamoDB (rigel-events)
+EventBridge (EC2 events) → Lambda (collector.py) → DynamoDB (vesper-events)
 ```
 
 ## Components

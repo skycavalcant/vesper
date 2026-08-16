@@ -7,14 +7,14 @@
 
 ## Contexto
 
-Os workflows de repair do Rigel (recuperação de EC2, failover de RDS, failover multi-region) envolvem múltiplas etapas sequenciais que podem falhar independentemente.
+Os workflows de repair do Vesper (recuperação de EC2, failover de RDS, failover multi-region) envolvem múltiplas etapas sequenciais que podem falhar independentemente.
 
 As opções consideradas foram:
 - Uma única função Lambda com todas as etapas
 - Múltiplas Lambdas encadeadas via SQS
 - AWS Step Functions
 
-*Rigel's repair workflows (EC2 recovery, RDS failover, multi-region failover) involve multiple sequential steps that can each fail independently.*
+*Vesper's repair workflows (EC2 recovery, RDS failover, multi-region failover) involve multiple sequential steps that can each fail independently.*
 
 *The options considered were: a single Lambda function with all steps, multiple Lambdas chained via SQS, AWS Step Functions.*
 
@@ -36,7 +36,7 @@ Escolhi **AWS Step Functions**.
 
 3. **Retry e tratamento de erros nativos** — Step Functions possui lógica de retry nativa, blocos catch e configuração de timeout por estado. Implementar isso em uma única Lambda seria complexo e propenso a erros.
 
-4. **Trilha de auditoria** — Cada execução de um workflow do Step Functions é registrada com input/output por estado. Isso alimenta diretamente o Rigel Report.
+4. **Trilha de auditoria** — Cada execução de um workflow do Step Functions é registrada com input/output por estado. Isso alimenta diretamente o Vesper Report.
 
 5. **Alinhamento com SAA-C03** — Step Functions é um serviço central no exame AWS Solutions Architect. Usá-lo aqui reforça esse aprendizado com experiência prática.
 
@@ -48,7 +48,7 @@ Escolhi **AWS Step Functions**.
 
 3. *Built-in retry and error handling — Step Functions has native retry logic, catch blocks, and timeout configuration per state. Implementing this in a single Lambda would be complex and error-prone.*
 
-4. *Audit trail — Every execution of a Step Functions workflow is logged with input/output per state. This feeds directly into Rigel Report.*
+4. *Audit trail — Every execution of a Step Functions workflow is logged with input/output per state. This feeds directly into Vesper Report.*
 
 5. *SAA-C03 alignment — Step Functions is a core service in the AWS Solutions Architect exam. Using it here reinforces that learning with practical experience.*
 

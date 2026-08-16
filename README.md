@@ -1,11 +1,11 @@
-# Rigel
+# Vesper
 **Detecção e recuperação autônoma de falhas. Automaticamente.**
 
 *Autonomous failure detection and recovery. Automatically.*
 
-O Rigel é uma plataforma autônoma de resiliência para infraestrutura AWS. Ele detecta falhas, diagnostica causa raiz, executa ações de recuperação e reporta o que aconteceu — sem intervenção humana.
+O Vesper é uma plataforma autônoma de resiliência para infraestrutura AWS. Ele detecta falhas, diagnostica causa raiz, executa ações de recuperação e reporta o que aconteceu — sem intervenção humana.
 
-*Rigel is an autonomous resilience platform for AWS infrastructure. It detects failures, diagnoses root causes, executes recovery actions, and reports what happened — without human intervention.*
+*Vesper is an autonomous resilience platform for AWS infrastructure. It detects failures, diagnoses root causes, executes recovery actions, and reports what happened — without human intervention.*
 
 > Não é monitoramento. Não é backup. É um sistema imunológico para a sua cloud.
 >
@@ -16,7 +16,7 @@ O Rigel é uma plataforma autônoma de resiliência para infraestrutura AWS. Ele
 ## O Problema
 
 ```
-Hoje:                           Com o Rigel:
+Hoje:                           Com o Vesper:
 
 Aplicação rodando               Falha detectada
        |                               |
@@ -36,16 +36,16 @@ Alguém acorda às 3h             Decisão (com confidence score)
 ```
                     AWS Account
                          |
-                    RIGEL AGENT
+                    VESPER AGENT
                          |
            ------------------------------
            |                            |
-      Rigel Watch                 Rigel Brain
+      Vesper Watch                Vesper Brain
    (Coletor de Eventos)      (Motor de Decisão)
            |                            |
            ------------------------------
                          |
-                   Rigel Repair
+                   Vesper Repair
                          |
            ------------------------------
            |              |             |
@@ -53,7 +53,7 @@ Alguém acorda às 3h             Decisão (com confidence score)
            |              |             |
         Restart         Scale        Failover
                          |
-                   Rigel Report
+                   Vesper Report
                          |
                      Dashboard
 ```
@@ -64,10 +64,10 @@ Alguém acorda às 3h             Decisão (com confidence score)
 
 | Módulo | Status | Descrição |
 |---|---|---|
-| **Rigel Watch** | Em andamento | Coleta eventos do CloudWatch + EventBridge<br>*Collects events from CloudWatch + EventBridge* |
-| **Rigel Brain** | Planejado | Diagnostica causa raiz usando AWS Bedrock<br>*Diagnoses root cause using AWS Bedrock* |
-| **Rigel Repair** | Planejado | Executa ações de recuperação de forma autônoma<br>*Executes recovery actions autonomously* |
-| **Rigel Report** | Planejado | Gera relatórios de incidente e dashboard<br>*Generates incident reports and dashboard* |
+| **Vesper Watch** | Em andamento | Coleta eventos do CloudWatch + EventBridge<br>*Collects events from CloudWatch + EventBridge* |
+| **Vesper Brain** | Planejado | Diagnostica causa raiz usando AWS Bedrock<br>*Diagnoses root cause using AWS Bedrock* |
+| **Vesper Repair** | Planejado | Executa ações de recuperação de forma autônoma<br>*Executes recovery actions autonomously* |
+| **Vesper Report** | Planejado | Gera relatórios de incidente e dashboard<br>*Generates incident reports and dashboard* |
 
 ---
 
@@ -103,7 +103,7 @@ Alguém acorda às 3h             Decisão (com confidence score)
 ## Estrutura do Repositório
 
 ```
-rigel/
+vesper/
 ├── modules/
 │   ├── watch/        # Coleta de eventos
 │   ├── brain/        # Diagnóstico por IA
@@ -130,7 +130,7 @@ rigel/
 - Python 3.12
 - pip
 
-### Deploy Rigel Watch (Development)
+### Deploy Vesper Watch (Development)
 
 ```bash
 # 1. Install development dependencies
@@ -167,7 +167,7 @@ terraform apply
 ### Project Structure
 
 ```
-rigel/
+vesper/
 ├── modules/watch/         # ✅ IMPLEMENTED
 │   ├── src/              # Lambda functions
 │   └── tests/            # Unit tests
@@ -201,20 +201,20 @@ pytest modules/watch/tests/test_collector.py -v
 ## Roadmap
 
 - [x] Definição do projeto e arquitetura
-- [x] **Rigel Watch — pipeline de coleta de eventos** ✅ **CONCLUÍDO**
-- [ ] Rigel Repair v1 — auto-recuperação de EC2
-- [ ] Rigel Repair v2 — failover de RDS
-- [ ] Rigel Repair v3 — failover multi-region
-- [ ] Rigel Brain — diagnóstico por IA com Bedrock
-- [ ] Rigel Report — dashboard e relatórios de incidente
+- [x] **Vesper Watch — pipeline de coleta de eventos** ✅ **CONCLUÍDO**
+- [ ] Vesper Repair v1 — auto-recuperação de EC2
+- [ ] Vesper Repair v2 — failover de RDS
+- [ ] Vesper Repair v3 — failover multi-region
+- [ ] Vesper Brain — diagnóstico por IA com Bedrock
+- [ ] Vesper Report — dashboard e relatórios de incidente
 
 - *[x] Project definition and architecture*
-- *[x] Rigel Watch — event collection pipeline ✅ COMPLETED*
-- *[ ] Rigel Repair v1 — EC2 auto-recovery*
-- *[ ] Rigel Repair v2 — RDS failover*
-- *[ ] Rigel Repair v3 — multi-region failover*
-- *[ ] Rigel Brain — Bedrock AI diagnosis*
-- *[ ] Rigel Report — dashboard and incident reports*
+- *[x] Vesper Watch — event collection pipeline ✅ COMPLETED*
+- *[ ] Vesper Repair v1 — EC2 auto-recovery*
+- *[ ] Vesper Repair v2 — RDS failover*
+- *[ ] Vesper Repair v3 — multi-region failover*
+- *[ ] Vesper Brain — Bedrock AI diagnosis*
+- *[ ] Vesper Report — dashboard and incident reports*
 
 ---
 
