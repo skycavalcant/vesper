@@ -1,5 +1,5 @@
 #!/bin/bash
-# Deploy Rigel Watch to development environment
+# Deploy Vesper Watch to development environment
 
 set -e
 
@@ -7,7 +7,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 INFRA_DEV="$PROJECT_ROOT/infra/environments/dev"
 
-echo "Deploying Rigel Watch to development environment..."
+echo "Deploying Vesper Watch to development environment..."
 echo ""
 
 # Build Lambda package

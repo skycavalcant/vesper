@@ -1,5 +1,5 @@
 /**
- * Output values for Rigel Watch module
+ * Output values for Vesper Watch module
  */
 
 output "lambda_function_arn" {

@@ -34,7 +34,7 @@ Escolhi o **Terraform**.
 
 2. **Gerenciamento de estado explícito** — O Terraform mantém um state file que representa exatamente o que existe em cada ambiente. Isso torna possível detectar drift entre a infraestrutura declarada e o que está realmente rodando — uma capacidade crítica para uma plataforma de resiliência.
 
-3. **Separação de responsabilidades** — Diferente do AWS CDK, o Terraform mantém o código de infraestrutura completamente separado do código de aplicação. Para o Rigel, onde decisões de infraestrutura são decisões arquiteturais, essa separação torna mais fácil e seguro raciocinar, revisar e auditar mudanças de infraestrutura.
+3. **Separação de responsabilidades** — Diferente do AWS CDK, o Terraform mantém o código de infraestrutura completamente separado do código de aplicação. Para o Vesper, onde decisões de infraestrutura são decisões arquiteturais, essa separação torna mais fácil e seguro raciocinar, revisar e auditar mudanças de infraestrutura.
 
 4. **Maturidade e ecossistema** — O Terraform possui um provider AWS estável e bem documentado, além de um registry de módulos reutilizáveis. Para um projeto que precisa se mover rápido sem sacrificar confiabilidade, isso reduz o risco de encontrar casos de borda sem suporte.
 

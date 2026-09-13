@@ -1,5 +1,5 @@
 #!/bin/bash
-# rigel-account-setup.sh
+# vesper-account-setup.sh
 # Run this ONCE before starting the project.
 # It configures your AWS account to avoid unexpected charges.
 
@@ -8,7 +8,7 @@ set -e
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 REGION="us-east-1"
 
-echo "Setting up Rigel on account: $ACCOUNT_ID"
+echo "Setting up Vesper on account: $ACCOUNT_ID"
 echo ""
 
 # 1. Budget alert at $1 — warns before any charge
@@ -16,7 +16,7 @@ echo "[1/3] Creating $1 budget alert..."
 aws budgets create-budget \
   --account-id "$ACCOUNT_ID" \
   --budget '{
-    "BudgetName": "rigel-guard",
+    "BudgetName": "vesper-guard",
     "BudgetLimit": {"Amount": "1", "Unit": "USD"},
     "TimeUnit": "MONTHLY",
     "BudgetType": "COST"
@@ -52,18 +52,18 @@ done
 # echo ""
 # echo "[3/3] Creating S3 bucket for Terraform state..."
 # aws s3api create-bucket \
-#   --bucket "rigel-terraform-state-$ACCOUNT_ID" \
+#   --bucket "vesper-terraform-state-$ACCOUNT_ID" \
 #   --region "$REGION"
 # aws s3api put-bucket-versioning \
-#   --bucket "rigel-terraform-state-$ACCOUNT_ID" \
+#   --bucket "vesper-terraform-state-$ACCOUNT_ID" \
 #   --versioning-configuration Status=Enabled
 # aws s3api put-bucket-encryption \
-#   --bucket "rigel-terraform-state-$ACCOUNT_ID" \
+#   --bucket "vesper-terraform-state-$ACCOUNT_ID" \
 #   --server-side-encryption-configuration \
 #     '{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'
 
 echo ""
-echo "Setup complete. Your account is ready for Rigel."
+echo "Setup complete. Your account is ready for Vesper."
 echo ""
 echo "IMPORTANT: Never create a NAT Gateway during development."
 echo "Use EC2 public IPs directly to avoid $32/month charges."

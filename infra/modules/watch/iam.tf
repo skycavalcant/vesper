@@ -1,5 +1,5 @@
 /**
- * IAM roles and policies for Rigel Watch
+ * IAM roles and policies for Vesper Watch
  * Following least privilege principle
  */
 

@@ -1,5 +1,5 @@
 """
-Unit tests for Rigel Watch Event Collector
+Unit tests for Vesper Watch Event Collector
 """
 import json
 import os
@@ -7,7 +7,7 @@ from unittest.mock import patch, MagicMock
 import pytest
 
 # Set environment variables before importing the module
-os.environ['EVENTS_TABLE_NAME'] = 'test-rigel-events'
+os.environ['EVENTS_TABLE_NAME'] = 'test-vesper-events'
 
 from modules.watch.src.collector import lambda_handler
 

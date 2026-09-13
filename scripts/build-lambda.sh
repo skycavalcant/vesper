@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build Lambda deployment package for Rigel Watch
+# Build Lambda deployment package for Vesper Watch
 
 set -e
 
@@ -8,7 +8,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 BUILD_DIR="$PROJECT_ROOT/build"
 WATCH_SRC="$PROJECT_ROOT/modules/watch/src"
 
-echo "Building Rigel Watch Lambda function..."
+echo "Building Vesper Watch Lambda function..."
 
 # Clean and create build directory
 rm -rf "$BUILD_DIR"

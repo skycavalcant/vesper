@@ -1,4 +1,4 @@
-# Development and testing dependencies for Rigel
+# Development and testing dependencies for Vesper
 
 # Testing
 pytest==8.2.2

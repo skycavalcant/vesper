@@ -1,5 +1,5 @@
 #!/bin/bash
-# Send a test EC2 event to Rigel Watch Lambda
+# Send a test EC2 event to Vesper Watch Lambda
 
 set -e
 
@@ -16,7 +16,7 @@ if [ -z "$FUNCTION_NAME" ]; then
     exit 1
 fi
 
-echo "Testing Rigel Watch with sample EC2 event..."
+echo "Testing Vesper Watch with sample EC2 event..."
 echo "Function: $FUNCTION_NAME"
 echo ""
 
@@ -47,11 +47,11 @@ aws lambda invoke \
     --function-name "$FUNCTION_NAME" \
     --payload "$TEST_EVENT" \
     --cli-binary-format raw-in-base64-out \
-    /tmp/rigel-test-output.json
+    /tmp/vesper-test-output.json
 
 echo ""
 echo "Response:"
-cat /tmp/rigel-test-output.json | jq .
+cat /tmp/vesper-test-output.json | jq .
 echo ""
 
 # Get table name and query the event

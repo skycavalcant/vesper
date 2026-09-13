@@ -865,7 +865,7 @@ aws dynamodb scan --table-name $TABLE_NAME
 7. **Terraform Remote State**
    ```hcl
    backend "s3" {
-     bucket  = "rigel-tfstate"
+     bucket  = "vesper-tfstate"
      key     = "dev/watch.tfstate"
      encrypt = true
    }
@@ -909,7 +909,7 @@ aws dynamodb scan --table-name $TABLE_NAME
 
 1. **Monorepo desde o início**
    ```
-   rigel/
+   vesper/
    ├── services/watch/     # Cada módulo isolado
    ├── services/brain/
    └── infrastructure/     # Terraform separado

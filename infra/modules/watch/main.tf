@@ -1,5 +1,5 @@
 /**
- * Rigel Watch - Terraform Module
+ * Vesper Watch - Terraform Module
  * Provisions Lambda, EventBridge, and DynamoDB for event collection
  */
 
@@ -53,7 +53,7 @@ resource "aws_dynamodb_table" "events" {
   tags = {
     Name        = "${var.project_name}-events"
     Environment = var.environment
-    Module      = "rigel-watch"
+    Module      = "vesper-watch"
   }
 }
 
@@ -79,7 +79,7 @@ resource "aws_lambda_function" "collector" {
   tags = {
     Name        = "${var.project_name}-watch-collector"
     Environment = var.environment
-    Module      = "rigel-watch"
+    Module      = "vesper-watch"
   }
 }
 
@@ -116,7 +116,7 @@ resource "aws_cloudwatch_event_rule" "ec2_state_change" {
 # EventBridge target - Lambda function
 resource "aws_cloudwatch_event_target" "lambda" {
   rule      = aws_cloudwatch_event_rule.ec2_state_change.name
-  target_id = "RigelWatchCollector"
+  target_id = "VesperWatchCollector"
   arn       = aws_lambda_function.collector.arn
 }
 
@@ -152,7 +152,7 @@ resource "aws_cloudwatch_event_rule" "ec2_status_check_failed" {
 # EventBridge target for status check failures
 resource "aws_cloudwatch_event_target" "lambda_status_check" {
   rule      = aws_cloudwatch_event_rule.ec2_status_check_failed.name
-  target_id = "RigelWatchCollectorStatusCheck"
+  target_id = "VesperWatchCollectorStatusCheck"
   arn       = aws_lambda_function.collector.arn
 }
 

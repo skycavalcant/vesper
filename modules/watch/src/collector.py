@@ -1,5 +1,5 @@
 """
-Rigel Watch - Event Collector
+Vesper Watch - Event Collector
 Collects EC2 failure events from EventBridge and stores them in DynamoDB
 """
 import json
@@ -12,7 +12,7 @@ from botocore.exceptions import ClientError
 
 
 dynamodb = boto3.resource('dynamodb')
-table_name = os.environ.get('EVENTS_TABLE_NAME', 'rigel-events')
+table_name = os.environ.get('EVENTS_TABLE_NAME', 'vesper-events')
 table = dynamodb.Table(table_name)
 
 
